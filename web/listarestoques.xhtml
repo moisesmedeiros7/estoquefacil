@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+     
+    <h:form id="listarestoques">
+        
+        
+        <p:dataTable value="#{estoqueBean.estoques}" var="Estoques" rows="5"  id="dt"
+                         paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" >
+        
+            
+            <f:facet name="header"  >
+                    Estoques Cadastrados
+            </f:facet>   
+
+                <p:column headerText="Numero" sortBy="Nome">
+                    <h:outputText value="#{Estoques.idEstoque}"> </h:outputText>
+                </p:column>
+
+                <p:column headerText="Nome" sortBy="Nome">
+                    <h:outputText value="#{Estoques.nome}"> </h:outputText>
+                </p:column>
+                <p:column headerText="local" sortBy="#{Estoques.descricao}">
+                    <h:outputText value="#{Estoques.loc}" ></h:outputText>
+                </p:column>
+                <p:column headerText="Descrição" sortBy="#{Estoques.descricao}">
+                    <h:outputText value="#{Estoques.descricao}" ></h:outputText>
+                </p:column>
+                <p:column headerText="Endereço" sortBy="#{Estoques.endereco}">
+                    <h:outputText value="#{Estoques.endereco}" ></h:outputText>
+                </p:column>
+                 <p:column headerText="Telefone" sortBy="#{Estoques.telefone}">
+                    <h:outputText value="#{Estoques.telefone}" ></h:outputText>
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ação"/>
+                    </f:facet>
+                    
+                    <p:commandButton action="#{estoqueBean.carregarEstoque(Estoques)}" value="Editar" icon="ui-icon-pencil" />
+                </p:column>
+           
+     
+            </p:dataTable>
+    </h:form>
+
+
+
+</ui:decorate>

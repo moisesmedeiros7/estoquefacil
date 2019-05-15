@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:form id="addestoque">
+        
+        <p:fieldset legend="Dar entrada no estoque" >
+            <div align="center">
+                <p:panel header="Estocar novo lote" style="margin-bottom:10px;" >
+                    <p:panelGrid id="sele" columns="2">
+                     <h:outputLabel value="Estoque" ></h:outputLabel>
+                     <h:outputLabel value="#{produtoBean.produto.est.nome}" ></h:outputLabel>
+                     <h:outputLabel value="Nome" ></h:outputLabel>
+                     <h:outputLabel value="#{produtoBean.produto.nome}" ></h:outputLabel>  
+                     <h:outputLabel value="Unidade" ></h:outputLabel>
+                     <h:outputLabel value="#{produtoBean.produto.unidade}" ></h:outputLabel>
+                     <h:outputLabel value="Descrição" ></h:outputLabel>
+                     <h:outputLabel value="#{produtoBean.produto.descricao}" ></h:outputLabel>
+                     <h:outputLabel value="Status" ></h:outputLabel>
+                     <h:outputLabel value="#{produtoBean.produto.status}" ></h:outputLabel>
+                     <h:outputLabel value="Data de vencimento da licitação" ></h:outputLabel>
+                     <h:outputLabel value="#{produtoBean.produto.datavencLic}" ></h:outputLabel>
+                    </p:panelGrid>
+                </p:panel>
+                    
+                <p:panel>
+                <p:panelGrid columns="2">
+                   <h:outputLabel value="Numero do Lote" ></h:outputLabel>
+                    <p:inputText value="#{loteBean.lote.numeroLote}" required="true" requiredMessage="O campo numero do lote é obrigatório" ></p:inputText>
+                    
+                    <h:outputLabel value="Quantidade" ></h:outputLabel>
+                    <p:inputText value="#{loteBean.lote.quantidade}" required="true" requiredMessage="O campo quantidade é obrigatório"></p:inputText>
+                    
+                     <p:outputLabel for="data" value="Data de validade" />
+                     <p:calendar locale="pt_BR" id="data" value="#{loteBean.lote.dataValidade}" effect="fold" pattern="dd/MM/yyyy"  />
+               
+                    <f:facet name="footer" >
+                        <p:commandButton value="Adicionar" ajax="false" actionListener="#{loteBean.criarLote(produtoBean.produto)}" update="@form :msgGlobal" action="addpedido.xhtml"  ></p:commandButton>
+                    </f:facet>
+                    <f:facet name="footer" >
+                        <p:commandButton ajax="false" value="Cancelar" actionListener="#{loteBean.loteNew()}" action="index.xhtml" />
+                    </f:facet>
+                </p:panelGrid>
+                </p:panel>
+            </div>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>

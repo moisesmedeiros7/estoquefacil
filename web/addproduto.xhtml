@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:form id="addproduto">
+       
+        
+      <p:fieldset legend="Adicionar novo Produto" >
+            <div align="center">
+                
+                <p:panelGrid columns="2" >
+                   
+                    <h:outputLabel  value="Selecione o Estoque" ></h:outputLabel>
+                    <p:selectOneMenu value="#{estoqueBean.estoque.idEstoque}" required="true" requiredMessage="O campo estoque é obrigatório">
+                        <f:selectItem itemLabel="" itemValue="" />
+                        <f:selectItems value="#{estoqueBean.estoques}" var="a" 
+                                       itemLabel="#{a.nome}" itemValue="#{a.idEstoque}" actionListener="#{estoqueBean.setEstoque(Estoque)}"  />
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Nome" ></h:outputLabel>
+                    <p:inputText value="#{produtoBean.produto.nome}" required="true" requiredMessage="O campo nome é obrigatório" ></p:inputText>
+                    
+                    <h:outputLabel value="Unidade" ></h:outputLabel>
+                    <p:selectOneMenu value="#{produtoBean.produto.unidade}" required="true" requiredMessage="O campo unidade é obrigatório">
+                        <f:selectItem itemLabel="selecione" itemValue="#{produtoBean.produto.unidade}"/> 
+                        <f:selectItem itemLabel="caixa" itemValue="caixa"/>  
+                        <f:selectItem itemLabel="cm" itemValue="cm"/>  
+                        <f:selectItem itemLabel="frasco" itemValue="frasco"/>
+                        <f:selectItem itemLabel="gramas" itemValue="gramas"/> 
+                        <f:selectItem itemLabel="ml" itemValue="ml"/>  
+                        <f:selectItem itemLabel="pacote" itemValue="pacote"/>
+                        <f:selectItem itemLabel="unidade indivisivel" itemValue="unidade indivisivel"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Descrição" ></h:outputLabel>
+                    <p:inputText value="#{produtoBean.produto.descricao}" required="true" requiredMessage="O campo Descriçao é obrigatório"></p:inputText>
+                    
+                    <h:outputLabel value="Licitável (?)" ></h:outputLabel>
+                    <p:selectOneMenu value="#{produtoBean.produto.licitavel}" required="true" requiredMessage="O campo licitavel é obrigatório" >  
+                        <f:selectItem itemLabel="selecione" itemValue="#{produtoBean.produto.licitavel}" />  
+                            <f:selectItem itemLabel="sim" itemValue="sim"/>  
+                            <f:selectItem itemLabel="não" itemValue="não"/>
+                            <f:selectItem itemLabel="sem informação" itemValue="não"/>
+                        </p:selectOneMenu>  
+                    
+                    <p:outputLabel for="data" value="Vencimento da licitação" />
+                    <p:calendar id="data" value="#{produtoBean.produto.datavencLic}" effect="fold" pattern="dd/MM/yyyy" locale="pt_BR" />
+                  
+                    <f:facet name="footer" >
+                        <p:commandButton value="Adicionar" ajax="false" actionListener="#{produtoBean.criarProduto(estoqueBean.estoque)}" icon="icon-award"  update="@form :msgGlobal"></p:commandButton>
+                    </f:facet>
+                    <f:facet name="footer" >
+                        <p:commandButton ajax="false" value="Cancelar" actionListener="#{produtoBean.produtoNew()}" action="index.xhtml" />
+                    </f:facet>
+                </p:panelGrid>
+              
+            </div>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>

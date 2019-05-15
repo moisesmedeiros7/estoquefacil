@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:form id="despacharpedido">
+       
+        
+      <p:fieldset legend="Adicionar novo Pedido" >
+            <div align="center">
+     
+                <p:panelGrid columns="2">
+                    
+                    <h:outputLabel value="Estoque" ></h:outputLabel>
+                    <h:outputLabel value="#{loteBean.lote.prod.est.nome}" ></h:outputLabel>
+                    
+                     <h:outputLabel value="Produto" ></h:outputLabel>
+                     <h:outputLabel value="#{loteBean.lote.prod.nome}" ></h:outputLabel>
+                     
+                     <h:outputLabel value="Unidade" ></h:outputLabel>
+                     <h:outputLabel value="#{loteBean.lote.prod.unidade}" ></h:outputLabel>
+                      
+                     <h:outputLabel value="Descriçao" ></h:outputLabel>
+                     <h:outputLabel value="#{loteBean.lote.prod.descricao}" ></h:outputLabel>
+                     
+                     <h:outputLabel value="Lote" ></h:outputLabel>
+                     <h:outputLabel value="#{loteBean.lote.numeroLote}"> </h:outputLabel>
+                    
+                     <h:outputLabel value="Data de Validade" ></h:outputLabel>
+                     <h:outputLabel value="#{loteBean.lote.dataValidade}"> <f:convertDateTime dateStyle="long" pattern="dd/MM/yyyy" /> </h:outputLabel>
+                     
+                      <h:outputLabel id="qdte" value="Quantidade existente" ></h:outputLabel>
+                      <h:outputLabel value="#{loteBean.lote.quantidade}"></h:outputLabel>
+                     
+                   
+                      <h:outputLabel value="Cliente destino" ></h:outputLabel>
+                      <p:selectOneMenu  value="#{clienteBean.cliente.idCliente}" required="true" requiredMessage="O campo Cliente Destino é obrigatório" >
+                        <f:selectItem itemLabel="" itemValue="" />
+                        <f:selectItems value="#{clienteBean.clientes}" var="cl" 
+                                       itemLabel="#{cl.nome}" itemValue="#{cl.idCliente}" actionListener="#{loteBean.setLote(Lote)}"  />
+                    </p:selectOneMenu>
+                   
+                      <h:outputLabel value="Quantidade requisitada:"> </h:outputLabel>
+                     <p:inputText value="#{pedidoBean.pedido.qtde}" required="true" requiredMessage="O campo quantidade requisitada é obrigatório" > </p:inputText>
+                    
+                     <f:facet name="footer"  >
+                        <p:commandButton value="confirmar pedido"  ajax="false" actionListener="#{pedidoBean.criarPedido(loteBean.lote , clienteBean.cliente, loteBean)}" update="qtde :msgGlobal" action="listarlotes.xhtml" ></p:commandButton>
+                    </f:facet>
+                    <f:facet name="footer" >
+                        <p:commandButton  value="Cancelar" actionListener="#{pedidoBean.pedidoNew(pedidoBean.pedido, clienteBean.cliente)}" action="index.xhtml" />
+                    </f:facet>
+                </p:panelGrid>
+            </div>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>

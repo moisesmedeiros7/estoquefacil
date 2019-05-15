@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+     
+    
+    <h:form id="listarpedidos">
+        
+        <p:dataTable value="#{pedidoBean.pedidos}" id="iddatat" var="Pedidos" rows="5"   
+                         paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50" >
+            <f:facet name="header" >
+                    Pedidos realizados
+            </f:facet> 
+    
+     
+            <p:column headerText="Pedido" sortBy="#{Pedidos.numero}" filterBy="#{Pedidos.numero}" >
+                <h:outputText value="#{Pedidos.numero}"> </h:outputText>
+            </p:column>
+            
+            <p:column headerText="Estoque de origem" sortBy="#{Pedidos.lot.prod.est.nome}" filterBy="#{Pedidos.lot.prod.est.nome}" >
+                <h:outputText value="#{Pedidos.lot.prod.est.nome}"> </h:outputText>
+            </p:column>
+            <p:column headerText="Cliente de Destino" sortBy="#{Pedidos.cli.nome}" filterBy="#{Pedidos.cli.nome}" >
+                <h:outputText value="#{Pedidos.cli.nome}"> </h:outputText>
+            </p:column>
+            <p:column headerText="Produto" sortBy="#{Pedidos.lot.prod.nome}" filterBy="#{Pedidos.lot.prod.nome}" >
+                <h:outputText value="#{Pedidos.lot.prod.nome}"> </h:outputText>
+            </p:column>
+            <p:column headerText="Unidade" sortBy="#{Pedidos.lot.prod.unidade}" filterBy="#{Pedidos.lot.prod.unidade}" >
+                <h:outputText value="#{Pedidos.lot.prod.unidade}"> </h:outputText>
+            </p:column>
+             <p:column headerText="Lote" sortBy="#{Pedidos.lot.numeroLote}" filterBy="#{Pedidos.lot.numeroLote}" >
+                <h:outputText value="#{Pedidos.lot.numeroLote}"> </h:outputText>
+            </p:column>
+            <p:column headerText="Quantidade" sortBy="#{Pedidos.qtde}" filterBy="#{Pedidos.qtde}" >
+                <h:outputText value="#{Pedidos.qtde}"> </h:outputText>
+            </p:column>
+            
+             <p:column headerText="Data" sortBy="#{Pedidos.dataPedido}" filterBy="#{Pedidos.dataPedido}" >
+                <h:outputText value="#{Pedidos.dataPedido}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </h:outputText>
+            </p:column>
+             <p:column headerText="Hora" sortBy="#{Pedidos.horaPedido}" filterBy="#{Pedidos.horaPedido}" >
+                 <h:outputText value="#{Pedidos.horaPedido}"> <f:convertDateTime pattern="HH:mm:ss" timeZone="America/Recife" /> </h:outputText>
+            </p:column>
+             
+             
+             <p:column headerText="Operador" sortBy="#{Pedidos.cli.nome}" filterBy="#{Pedidos.cli.nome}" >
+                <h:outputText value="#{Pedidos.us.nome}"> </h:outputText>
+            </p:column>
+            </p:dataTable>
+    </h:form>
+
+
+
+</ui:decorate>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:form id="addestoque">
+    
+        <p:fieldset legend="Adicionar novo Estoque" >
+            <div align="center">
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Nome" ></h:outputLabel>
+                    <p:inputText value="#{estoqueBean.estoque.nome}" required="true" requiredMessage="O campo nome é obrigatório"></p:inputText>
+                    
+                    <h:outputLabel value="Local" ></h:outputLabel>
+                    <p:inputText value="#{estoqueBean.estoque.loc}" required="true" requiredMessage="O campo local é obrigatório" ></p:inputText>
+                    
+                     <h:outputLabel value="Descriçao" ></h:outputLabel>
+                     <p:inputText value="#{estoqueBean.estoque.descricao}" ></p:inputText>
+               
+                     <h:outputLabel value="Endereço" ></h:outputLabel>
+                     <p:inputText value="#{estoqueBean.estoque.endereco}" ></p:inputText>
+                    
+                     <h:outputLabel value="Telefone" ></h:outputLabel>
+                     <p:inputText value="#{estoqueBean.estoque.telefone}"></p:inputText>
+              
+                    <f:facet name="footer" >
+                        <p:commandButton value="Adicionar" ajax="false" actionListener="#{estoqueBean.criarEstoque()}" icon="icon-award"  update="@form :msgGlobal"></p:commandButton>
+                    </f:facet>
+                    <f:facet name="footer" >
+                        <p:commandButton ajax="false" value="Cancelar" actionListener="#{estoqueBean.estoqueNew()}" action="index.xhtml" update="msgGlobal" />
+                    </f:facet>
+                </p:panelGrid>
+            </div>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>

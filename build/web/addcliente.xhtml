@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:form id="addcliente">
+    
+        <p:fieldset legend="Adicionar novo Cliente" >
+            <div align="center">
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Nome" ></h:outputLabel>
+                    <p:inputText value="#{clienteBean.cliente.nome}" required="true" requiredMessage="O campo nome é obrigatório" ></p:inputText>
+                    
+                    <h:outputLabel value="CPF/CNPJ" ></h:outputLabel>
+                    <p:inputText value="#{clienteBean.cliente.cpfCnpj}" ></p:inputText>
+               
+                     <h:outputLabel value="Endereço" ></h:outputLabel>
+                     <p:inputText value="#{clienteBean.cliente.endereco}" ></p:inputText>
+                    
+                     <h:outputLabel value="Cidade" ></h:outputLabel>
+                     <p:inputText value="#{clienteBean.cliente.cidade}"></p:inputText>
+                     
+                     <h:outputLabel value="Email" ></h:outputLabel>
+                     <p:inputText id="campoEmail" value="#{clienteBean.cliente.email}" required="true"
+                             requiredMessage="O campo email é obrigatório" validatorMessage="Este e-mail está incorreto!"
+                             maxlength="100">
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                     </p:inputText>
+
+                     
+                     <h:outputLabel value="Senha" ></h:outputLabel>
+                     <p:inputText value="#{clienteBean.cliente.senha}" required="true" requiredMessage="O campo senha é obrigatório" ></p:inputText>
+              
+                    <f:facet name="footer" >
+                        <p:commandButton value="Adicionar" ajax="false" actionListener="#{clienteBean.criarCliente()}" oncomplete="PF('dialog').show()" update="@form :msgGlobal"></p:commandButton>
+                    </f:facet>
+                    <f:facet name="footer" >
+                        <p:commandButton ajax="false" value="Cancelar" actionListener="#{clienteBean.clienteNew()}" action="index.xhtml" update="msgGlobal" />
+                    </f:facet>
+                </p:panelGrid>
+            </div>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>
